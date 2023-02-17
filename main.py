@@ -11,6 +11,11 @@ for filepath in filepaths:
     pdf.add_page()
     filename = Path(filepath).stem
     print(filename)
-    pdf.cell(txt=filename.title(), w=297)
+    pdf.cell(txt=filename.title(), w=297, h=13, ln=1)
+    with open(filepath, 'r') as file:
+        data = file.read()
+
+    pdf.set_font("Times", size=12)
+    pdf.multi_cell(w=0, h=8, txt=data)
 
 pdf.output("output.pdf")
